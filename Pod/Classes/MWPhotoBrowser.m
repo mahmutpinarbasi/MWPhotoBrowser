@@ -1224,6 +1224,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 - (void)_playVideo:(NSURL *)videoURL atPhotoIndex:(NSUInteger)index {
     
     if ([self.delegate respondsToSelector:@selector(photoBrowser:didTappedPlayVideoAtIndex:forURL:)]) {
+        [self setVideoLoadingIndicatorVisible:NO atPageIndex:index];
         [self.delegate photoBrowser:self didTappedPlayVideoAtIndex:index forURL:videoURL];
     }else{
         // Setup player
