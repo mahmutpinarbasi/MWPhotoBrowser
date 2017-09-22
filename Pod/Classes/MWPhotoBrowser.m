@@ -1225,6 +1225,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     
     if ([self.delegate respondsToSelector:@selector(photoBrowser:didTappedPlayVideoAtIndex:forURL:)]) {
         [self setVideoLoadingIndicatorVisible:NO atPageIndex:index];
+        [self clearCurrentVideo];// prepare for next play button tap
         [self.delegate photoBrowser:self didTappedPlayVideoAtIndex:index forURL:videoURL];
     }else{
         // Setup player
