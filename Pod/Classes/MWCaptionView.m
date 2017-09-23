@@ -26,10 +26,10 @@ static const CGFloat labelPadding = 10;
     if (self) {
         self.userInteractionEnabled = NO;
         _photo = photo;
-        self.barStyle = UIBarStyleBlackTranslucent;
+        self.barStyle = UIBarStyleDefault;
+        self.translucent = YES;
         self.tintColor = nil;
         self.barTintColor = nil;
-        self.barStyle = UIBarStyleBlackTranslucent;
         [self setBackgroundImage:nil forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
         [self setupCaption];
@@ -58,7 +58,7 @@ static const CGFloat labelPadding = 10;
     _label.lineBreakMode = NSLineBreakByWordWrapping;
 
     _label.numberOfLines = 0;
-    _label.textColor = [UIColor whiteColor];
+//    _label.textColor = [UIColor whiteColor];
     _label.font = [UIFont systemFontOfSize:17];
     if ([_photo respondsToSelector:@selector(caption)]) {
         _label.text = [_photo caption] ? [_photo caption] : @" ";
@@ -66,5 +66,12 @@ static const CGFloat labelPadding = 10;
     [self addSubview:_label];
 }
 
+#pragma mark - Properties
+- (void)setTintColor:(UIColor *)tintColor{
+    // mahmutpinarbasi
+    [super setTintColor:tintColor];
+    _label.textColor = tintColor;
+    
+}
 
 @end

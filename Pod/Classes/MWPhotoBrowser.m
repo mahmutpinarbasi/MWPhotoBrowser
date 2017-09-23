@@ -144,7 +144,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     if (!_enableGrid) _startOnGrid = NO;
     
     // View
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = self.backgroundColor==nil ? [UIColor blackColor]:self.backgroundColor;
     self.view.clipsToBounds = YES;
     
     // Setup paging scrolling view
@@ -155,17 +155,18 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     _pagingScrollView.delegate = self;
     _pagingScrollView.showsHorizontalScrollIndicator = NO;
     _pagingScrollView.showsVerticalScrollIndicator = NO;
-    _pagingScrollView.backgroundColor = [UIColor blackColor];
+    _pagingScrollView.backgroundColor = self.view.backgroundColor;
     _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
     [self.view addSubview:_pagingScrollView];
     
     // Toolbar
     _toolbar = [[UIToolbar alloc] initWithFrame:[self frameForToolbarAtOrientation:self.interfaceOrientation]];
-    _toolbar.tintColor = [UIColor whiteColor];
+    _toolbar.tintColor = self.navigationTintColor==nil ? [UIColor whiteColor]:self.navigationTintColor;
     _toolbar.barTintColor = nil;
     [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsLandscapePhone];
-    _toolbar.barStyle = UIBarStyleBlackTranslucent;
+    _toolbar.translucent = YES;
+    _toolbar.barStyle = UIBarStyleDefault;
     _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     
     // Toolbar Items
@@ -442,11 +443,16 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 - (void)setNavBarAppearance:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     UINavigationBar *navBar = self.navigationController.navigationBar;
-    navBar.tintColor = [UIColor whiteColor];
-    navBar.barTintColor = nil;
+    navBar.tintColor = self.navigationTintColor==nil ? [UIColor whiteColor]:self.navigationTintColor;
+    if (self.navigationBarTintColor) {
+        navBar.barTintColor = self.navigationBarTintColor;
+    }else{
+        navBar.barTintColor = nil;
+    }
     navBar.shadowImage = nil;
     navBar.translucent = YES;
-    navBar.barStyle = UIBarStyleBlackTranslucent;
+    navBar.barStyle = UIBarStyleDefault;
+    navBar.titleTextAttributes = self.navigationTitleTextAttributes==nil ? @{}:self.navigationTitleTextAttributes;
     [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [navBar setBackgroundImage:nil forBarMetrics:UIBarMetricsLandscapePhone];
 }
@@ -687,6 +693,8 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
         }
     }
     captionView.alpha = [self areControlsHidden] ? 0 : 1; // Initial alpha
+    captionView.tintColor = self.navigationTintColor;
+    captionView.barTintColor = self.navigationBarTintColor;
     return captionView;
 }
 

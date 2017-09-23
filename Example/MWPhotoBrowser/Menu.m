@@ -1124,7 +1124,11 @@
     browser.enableSwipeToDismiss = NO;
     browser.autoPlayOnAppear = autoPlayOnAppear;
     [browser setCurrentPhotoIndex:0];
-    
+    browser.backgroundColor = [UIColor whiteColor];
+    browser.navigationTintColor = [UIColor yellowColor];
+    browser.navigationBarTintColor = [UIColor redColor];
+//    browser.navigationTitleTextAttributes = @{NSForegroundColorAttributeName:[UIColor brownColor], NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Light" size:40]};
+
     // Test custom selection images
 //    browser.customImageSelectedIconName = @"ImageSelected.png";
 //    browser.customImageSelectedSmallIconName = @"ImageSelectedSmall.png";

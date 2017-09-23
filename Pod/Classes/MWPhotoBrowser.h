@@ -36,7 +36,7 @@
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index selectedChanged:(BOOL)selected;
 - (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser;
 
-- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didTappedPlayVideoAtIndex:(NSInteger)index forURL:(NSURL *)videoURL;
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didTappedPlayVideoAtIndex:(NSInteger)index forURL:(NSURL *)videoURL; // mahmutpinarbasi
 @end
 
 @interface MWPhotoBrowser : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate>
@@ -53,6 +53,12 @@
 @property (nonatomic) BOOL autoPlayOnAppear;
 @property (nonatomic) NSUInteger delayToHideElements;
 @property (nonatomic, readonly) NSUInteger currentIndex;
+
+
+@property (nonatomic, strong) UIColor * backgroundColor; // mahmutpinarbasi
+@property (nonatomic, strong) UIColor * navigationTintColor; // mahmutpinarbasi
+@property (nonatomic, strong) UIColor * navigationBarTintColor; // mahmutpinarbasi
+@property (nonatomic, strong) NSDictionary * navigationTitleTextAttributes; // mahmutpinarbasi
 
 // Customise image selection icons as they are the only icons with a colour tint
 // Icon should be located in the app's main bundle
