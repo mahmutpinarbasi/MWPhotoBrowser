@@ -30,4 +30,7 @@
 // the full width of the screen
 - (CGSize)sizeThatFits:(CGSize)size;
 
+
+// Toolbar's UILabel title text attributes for attributed string
+@property (nonatomic, strong) NSDictionary * titleTextAttributes; // mahmutpinarbasi
 @end

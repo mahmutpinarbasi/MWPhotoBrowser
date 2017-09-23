@@ -59,10 +59,10 @@ static const CGFloat labelPadding = 10;
 
     _label.numberOfLines = 0;
 //    _label.textColor = [UIColor whiteColor];
-    _label.font = [UIFont systemFontOfSize:17];
-    if ([_photo respondsToSelector:@selector(caption)]) {
-        _label.text = [_photo caption] ? [_photo caption] : @" ";
-    }
+//    _label.font = [UIFont systemFontOfSize:17];
+//    if ([_photo respondsToSelector:@selector(caption)]) {
+//        _label.text = [_photo caption] ? [_photo caption] : @" ";
+//    }
     [self addSubview:_label];
 }
 
@@ -72,6 +72,21 @@ static const CGFloat labelPadding = 10;
     [super setTintColor:tintColor];
     _label.textColor = tintColor;
     
+}
+
+- (void)setTitleTextAttributes:(NSDictionary *)titleTextAttributes{
+    
+    _titleTextAttributes = titleTextAttributes;
+    if (_titleTextAttributes && [_photo respondsToSelector:@selector(caption)]) {
+        NSString * text = [_photo caption] ? [_photo caption] : @" ";
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithString:text attributes:_titleTextAttributes];
+        _label.attributedText = attrStr;
+    }else{
+        _label.font = [UIFont systemFontOfSize:17];
+        if ([_photo respondsToSelector:@selector(caption)]) {
+            _label.text = [_photo caption] ? [_photo caption] : @" ";
+        }
+    }
 }
 
 @end

@@ -695,6 +695,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     captionView.alpha = [self areControlsHidden] ? 0 : 1; // Initial alpha
     captionView.tintColor = self.navigationTintColor;
     captionView.barTintColor = self.navigationBarTintColor;
+    captionView.titleTextAttributes = self.navigationTitleTextAttributes;
     return captionView;
 }
 
